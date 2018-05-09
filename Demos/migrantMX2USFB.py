@@ -50,7 +50,7 @@ def migrantMX2USA(state, age_min=13, age_max=65, gender=None):
         '}]},"facebook_positions":["feed"],' +
         '"age_min":' + str(age_min) +
         ',"age_max":' + str(age_max) +
-        ',"device_platforms":["mobile","desktop"],"locales":[28],' +
+        ',"device_platforms":["mobile","desktop"],' +
         '"publisher_platforms":["facebook"]'
         )
     if gender is None:
