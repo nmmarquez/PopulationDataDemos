@@ -60,7 +60,7 @@ def migrantLesvos(adsid, acstok, expat=False, recent=False, arabicOnly=False):
     data["expat"] = expat
     data["recent"] = recent
     data["arabicOnly"] = arabicOnly
-    data["time"] = str(datetime.datetime.now()).split('.')[0]
+    data["time"] = str(datetime.datetime.utcnow()).split('.')[0]
     return data
 
 
