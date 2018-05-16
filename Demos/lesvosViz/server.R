@@ -23,7 +23,7 @@ lesvosDF <- fromJSON(txt="../../data/lesvos.json") %>%
     mutate(dau=extractVar(., "estimate_dau")) %>%
     mutate(mau=extractVar(., "estimate_mau")) %>%
     select(-data) %>%
-    mutate(time=as_datetime(time)) %>%
+    mutate(time2=as_datetime(time)) %>%
     gather(key="Estimator", value="Estimate", dau:mau)
 
 shinyServer(function(input,output){
@@ -36,8 +36,11 @@ shinyServer(function(input,output){
             filter(Estimator %in% input$estimates)
         
         p <- DF %>%
-            ggplot(aes(x=time, y=Estimate, color=Estimator)) +
+            ggplot(aes(x=time2, y=Estimate, color=Estimator,
+                       text=paste0("Time: ", DF$time, 
+                                   "<br>Estimate: ", DF$Estimate))) +
+            labs(x="Time", y="Population Estimate") +
             geom_point() + theme_classic()
-        ggplotly(p)
+        ggplotly(p, tooltip="text")
     })
 })
